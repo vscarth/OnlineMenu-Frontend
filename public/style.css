@@ -1,16 +1,3 @@
-body *, body, body *:before, body *:after {
-    box-sizing: border-box;
-}
-
-/* ul {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-li {
-    display: inline-block;
-} */
-
 div {
     padding: 0px;
     margin: 0px;

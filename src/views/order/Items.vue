@@ -1,60 +1,46 @@
 <template>
-    <div id="menu-holder">
-        <ul>
-            <li v-for="item in data.data" :key="item._id">
-                <div class="item">
-                    <span class="name"> {{ item.name }} </span>
-                    <span class="description"> {{ item.description }} </span>
-                    <span class="price"> ${{ item.price * 0.01 }} </span>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <ul>
+        <li v-for="item in data" :key="item._id">
+            <div class="item" v-on:click="itemClick(item._id)">
+                <span class="name"> {{ item.name }} </span>
+                <span class="description"> {{ item.description }} </span>
+                <span class="price"> ${{ item.price * 0.01 }} </span>
+            </div>
+        </li>
+    </ul>
 </template>
 
 <script>
 export default {
     name: 'Items',
-    data() {
-        return {
-            data: {}
-        };
-    },
-    beforeMount(){
-        this.getData();
-    },
+    props: ['data'],
     methods: {
-        async getData() {
-            await fetch('http://127.0.0.1:3000/api/menu')
-            .then(response => response.json())
-            .then(data => this.data = data);
+        itemClick (id) {
+            this.$emit("item-click", id);
         }
     }
 }
 </script>
 
 <style scoped>
-    #menu-holder {
-        width: 60%;
-        border-right: 1px solid #000;
-    }
-
     ul {
-        columns: 2;
-        padding: 0px;
-    }
-
-    li {
-        display: inline-block;
-        list-style: none;
+        flex-wrap: wrap;
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
         width: 100%;
     }
 
+    li {
+        /* display: inline-block; */
+        flex: 0 0 50%;
+    }
+
     div.item {
-        display: block;
         margin: 0px;
         border: 1px solid #ccc;
-        margin-bottom: 10px;
+        margin: 0 5px 12px 5px;
         box-shadow: 0px 0px 3px #ddd;
         border-radius: 3px;
         padding: 10px;
