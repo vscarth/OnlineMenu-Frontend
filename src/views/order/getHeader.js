@@ -9,6 +9,6 @@ export default (data, n = 3) => {
         }
     }
 
-    //Sort map by value and return n tags
-    return [...tags.entries()].sort((a,b) => b[1] - a[1]).slice(0,n)
+    //Sort map by value and return n tags, or all if n = 0
+    return [...tags.entries()].sort((a,b) => b[1] - a[1]).slice(0, n === 0 ? tags.length : n)
 };
