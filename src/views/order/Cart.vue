@@ -18,7 +18,7 @@
 
 <script>
 import { cartData } from '@/components/cart';
-import createOrder from '@/components/createOrder';
+import createOrder from '@/components/api/postOrder';
 
 import CartItem from '@/views/order/CartItem.vue';
 
@@ -38,15 +38,10 @@ export default {
         // console.log(cartData);
     },
     beforeUpdate(){
-        console.log(this.totalCount, cartData.totalCount)
-        console.log(this.price, cartData.totalPrice)
         this.totalCount = cartData.totalCount
         this.price = cartData.totalPrice
     },
     methods: {
-        editCartItem(item){
-            console.log(item)
-        },
         createOrder() {
             createOrder()
         }

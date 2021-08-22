@@ -37,7 +37,6 @@ export default {
     methods: {
         changeQuantity() {
             this.edit = false;
-            console.log("test")
             this.$emit('change-quantity')
         },
         deleteCartItem(){
