@@ -1,4 +1,4 @@
-import { reactive }from 'vue'
+import {reactive} from 'vue'
 
 const cartData = reactive({
     data: [
@@ -37,24 +37,23 @@ const addItem = (item) => {
 }
 
 const updateQuantity = (n, cartItem) => {
-    console.log(n, cartItem)
     if(n >= 1){
         cartItem.quantity = n
+        cartTotal()
     } else if(n <= 0){
         deleteItem(cartItem)
     }
-
-    cartTotal()
 }
 
 const deleteItem = (cartItem) => {
     for(var i = 0; i < cartData.data.length; i++){
         if(cartData.data[i]._id == cartItem._id){
             cartData.data.splice(i,1)
+            break
         }
     }
 
-    console.log(cartData)
+    cartTotal()
 }
 
 
