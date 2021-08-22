@@ -26,9 +26,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import getHeader from '@/views/order/getHeader';
-import {addItem as cartAddItem} from '@/components/cart.js';
+import { cartData, addItem as cartAddItem} from '@/components/cart';
+import getItems from '@/components/api/getItems'
 
 import Items from '@/views/order/Items.vue';
 import Cart from '@/views/order/Cart.vue';
@@ -47,18 +46,13 @@ export default {
         };
     },
     beforeMount(){
-        this.getData();
+        getItems()
+		.then((result)=>{
+			this.data = result;
+			this.headers = cartData.headers;
+		})
     },
     methods: {
-        async getData() {
-			axios.get('http://127.0.0.1:3000/api/menu')
-			.then(response => {
-				this.data = response.data.data.filter((n) => {return n.publish == true});
-			})
-			.then(() => {
-				this.headers = getHeader(this.data, 3);
-			})
-        },
 		cartClick(item) {
 			cartAddItem(item);
 			this.itemUpdate()
@@ -88,6 +82,7 @@ header {
 	margin: 0 auto;
 	line-height: 70px;
 	font-weight: bold;
+	color: white;
 }
 
 #header__logo {
