@@ -1,3 +1,9 @@
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 div {
     padding: 0;
     margin: 0;
@@ -7,10 +13,6 @@ ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-span, div {
-    user-select: none;
 }
 
 input::-webkit-outer-spin-button,
@@ -30,4 +32,16 @@ input[type=number] {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-}  
+}
+
+.hover--green:hover {
+    color: #42b983;
+}
+
+.hover--darker-green:hover {
+    color: #2e815c;
+}
+
+.hover--underline:hover {
+    text-decoration: underline;
+}
