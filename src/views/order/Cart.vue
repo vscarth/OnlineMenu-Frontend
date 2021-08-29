@@ -11,14 +11,13 @@
     </div>
     <div id="cart-checkout" v-if="cartData.length != 0">
         <div id="cart-checkout__total">Total: ${{ (price*0.01).toFixed(2) }}</div>
-        <button id="cart-checkout__button" v-on:click="createOrder">Place Order</button>
+        <button id="cart-checkout__button" v-on:click="$emit('place-order')">Place Order</button>
     </div>
 </div>
 </template>
 
 <script>
 import { cartData } from '@/components/cart';
-import createOrder from '@/components/api/postOrder';
 
 import CartItem from '@/views/order/CartItem.vue';
 
@@ -40,11 +39,6 @@ export default {
     beforeUpdate(){
         this.totalCount = cartData.totalCount
         this.price = cartData.totalPrice
-    },
-    methods: {
-        createOrder() {
-            createOrder()
-        }
     }
 }
 </script>
@@ -84,6 +78,9 @@ export default {
 
 #cart-checkout {
     margin-top: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -1px;
 }
 
 #cart-checkout__total {
@@ -97,9 +94,9 @@ export default {
     padding: 5px 30px;
     background-color: #42b983;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
     color: white;
+    font-weight: bold;
+    font-size: 20px;
     letter-spacing: -1px;
 }
 

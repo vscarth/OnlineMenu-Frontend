@@ -12,16 +12,19 @@
 		</div>
 	</header>
 	<section id="body-section">
-	<div id="menu-holder">
-		<div id="sorted-menu" v-for="tag in headers" :key="tag">
-			<h1 style="text-align: left;">{{tag[0]}}</h1>
-			<Items
-			:data="data.filter((n) => {return n.tags.includes(tag[0])})"
-			v-on:item-click="cartClick"/>
+		<div id="menu-holder">
+			<div id="sorted-menu" v-for="tag in headers" :key="tag">
+				<h1 style="text-align: left;">{{tag[0]}}</h1>
+				<Items
+				:data="data.filter((n) => {return n.tags.includes(tag[0])})"
+				v-on:item-click="cartClick"/>
+			</div>
 		</div>
-	</div>
-	<Cart v-on:change-quantity="itemUpdate" :key="cartKey"/>
+		<Cart v-on:change-quantity="itemUpdate" 
+			v-on:place-order="orderModal = true" 
+			:key="cartKey"/>
 	</section>
+	<OrderModal v-if="orderModal == true" v-on:close-modal="orderModal = false"/>
 </div>
 </template>
 
@@ -31,18 +34,21 @@ import getItems from '@/components/api/getItems'
 
 import Items from '@/views/order/Items.vue';
 import Cart from '@/views/order/Cart.vue';
+import OrderModal from '@/views/order/OrderModal';
 
 export default {
 	name: 'Home',
 	components: {
 		Items,
-		Cart
+		Cart,
+		OrderModal
 	},
 	data() {
         return {
             data: {},
 			headers: {},
-			cartKey: 0
+			cartKey: 0,
+			orderModal: false
         };
     },
     beforeMount(){
@@ -76,7 +82,7 @@ header {
 }
 
 #header-holder {
-	max-width: 1200px;
+	max-width: 1980px;
 	min-width: 700px;
 	padding: 0 10px;
 	margin: 0 auto;
@@ -117,7 +123,7 @@ header {
 
 #body-section {
 	display: flex;
-	max-width: 1200px;
+	max-width: 1980px;
 	min-width: 700px;
 	padding: 0 10px;
 	margin: 0 auto;
