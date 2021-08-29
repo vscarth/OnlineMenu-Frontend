@@ -45,6 +45,7 @@ export default {
 .quantity-editor {
     z-index: 10;
 }
+
 .quantity-holder__offclick {
     position: fixed;
     width: 100%;
