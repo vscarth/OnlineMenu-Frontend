@@ -10,7 +10,8 @@ const cartData = reactive({
         // }
     ],
     totalCount: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    customerName: String
 })
 
 const addItem = (item) => {
